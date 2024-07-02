@@ -1,6 +1,7 @@
 package dataProvider;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -25,11 +26,19 @@ public class Connect {
         return this.connection.createStatement();
     }
 
-    public static void main(String[] args) {
-        new Connect();
-    }
-
     public PreparedStatement prepareStatement(String sql) throws SQLException {
         return this.connection.prepareStatement(sql);
+    }
+
+    public DatabaseMetaData getMetaData() throws SQLException {
+        return this.connection.getMetaData();
+    }
+
+    public Connection getConnection() {
+        return this.connection;
+    }
+    
+    public static void main(String[] args) {
+        new Connect();
     }
 }

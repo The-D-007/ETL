@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -51,10 +52,10 @@ public class TablesToInsert extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             String fileNumber = filesNumber.getText();
-            int i = 1;
+            int i = 0;
             if (containsOnlyNumbers(fileNumber) == true) {
                 int times = Integer.parseInt(fileNumber);
-                while (i <= times) {
+                while (i < times) {
                     new SelectingFiles();
                     i++;
                 }
@@ -68,10 +69,6 @@ public class TablesToInsert extends JFrame implements ActionListener {
     }
     public boolean containsOnlyNumbers(String input) {
         return input.matches("^[0-9]+$");
-    }
-       
-    public static void main(String[] args) {
-        new TablesToInsert();
     }
     
 }

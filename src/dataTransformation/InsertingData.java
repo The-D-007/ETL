@@ -8,9 +8,13 @@ import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 import dataProvider.Connect;
+import load.TakingTables;
 
 public class InsertingData {
+    static int count = 0;
+
     public InsertingData(File selectedFile, String tableName) {
+        count++;
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedFile));
             Connect connect = new Connect();
@@ -24,9 +28,17 @@ public class InsertingData {
                     insertData(connect, tableName, columns, line);
                 }
             }
+           
+            
         } catch (Exception E) {
             E.printStackTrace();
         }
+
+        if (count > 1) {
+            System.out.println(count);
+            new TakingTables();
+        }
+
     }
 
     private void insertData(Connect connect, String tableName, String[] columns, String line) throws SQLException {
@@ -57,9 +69,6 @@ public class InsertingData {
             }
             pstmt.executeUpdate();
         }
-    }
-   
-    public static void main(String[] args) {
-        new InsertingData(null, "");
+
     }
 }
