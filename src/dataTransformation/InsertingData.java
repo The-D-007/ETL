@@ -5,18 +5,21 @@ import java.io.File;
 import java.io.FileReader;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import dataProvider.Connect;
-import load.TakingTables;
+import load.Tables;
 
 public class InsertingData {
     static int count = 0;
+    static List<String> tableNames = new ArrayList<>(); // Use a static list
 
     public InsertingData(File selectedFile, String tableName) {
+        addTableName(tableName);
         count++;
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedFile));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedFile))) {
             Connect connect = new Connect();
 
             String firstLine = bufferedReader.readLine();
@@ -28,17 +31,23 @@ public class InsertingData {
                     insertData(connect, tableName, columns, line);
                 }
             }
-           
-            
-        } catch (Exception E) {
-            E.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         if (count > 1) {
             System.out.println(count);
-            new TakingTables();
+            System.out.println(tableNames);
+            new Tables(tableNames.toArray(new String[0])); // Convert list to array
+            // new TakingTables();
         }
+    }
 
+    private void addTableName(String tableName) {
+        tableNames.add(tableName); // Add table name to the list
+        System.out.println("Added table name: " + tableName); // Debug statement
+        System.out.println("Current table names: " + tableNames); // Debug statement
     }
 
     private void insertData(Connect connect, String tableName, String[] columns, String line) throws SQLException {
@@ -69,6 +78,5 @@ public class InsertingData {
             }
             pstmt.executeUpdate();
         }
-
     }
 }

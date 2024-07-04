@@ -109,8 +109,8 @@ public class TakingTables extends JFrame implements ActionListener {
 
     
 
-    public static void main(String[] args) {
-        new TakingTables();
-    }
+    // public static void main(String[] args) {
+    //     new TakingTables();
+    // }
 
 }

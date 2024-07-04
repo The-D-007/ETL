@@ -36,7 +36,7 @@ public class TablesToInsert extends JFrame implements ActionListener {
         okay.setForeground(Color.WHITE);
         okay.setBounds(470, 185, 150, 30);
         okay.addActionListener(this);
-        add(okay);
+        add(okay); 
 
         
         setLayout(null);

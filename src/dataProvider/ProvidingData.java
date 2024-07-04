@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import dataTransformation.InsertingData;
+
 public class ProvidingData {
 
     public ProvidingData(File selectedFile, String tableName) {
@@ -33,7 +35,7 @@ public class ProvidingData {
                     System.out.println("Table created successfully.");
                 }
             }
-            // new InsertingData(selectedFile, tableName);
+            new InsertingData(selectedFile, tableName);
         } catch (Exception E) {
             E.printStackTrace();
         }

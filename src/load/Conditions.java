@@ -23,13 +23,13 @@ public class Conditions {
         System.arraycopy(columns2, 0, columns, columns1.length, columns2.length);
         System.arraycopy(additionalColumns, 0, columns, columns1.length + columns2.length, additionalColumns.length);
 
-        executeQuery(table1, table2, columns1, columns2, columns, "active_subscriber", "`"+
+        executeQuery(table1, table2, columns1, columns2, columns, "active_subs", "`"+
                 table1 + "`.`Subscription Date` > CURRENT_DATE");
 
-        executeQuery(table1, table2, columns1, columns2, columns, "ended_30_days_ago", "`"+ table1
+        executeQuery(table1, table2, columns1, columns2, columns, "ended_30_days", "`"+ table1
                 + "`.`Subscription Date` BETWEEN DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY) AND DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)");
 
-        executeQuery(table1, table2, columns1, columns2, columns, "ended_60_days_ago", "`"+table1
+        executeQuery(table1, table2, columns1, columns2, columns, "ended_60_days", "`"+table1
                 + "`.`Subscription Date` BETWEEN DATE_SUB(CURRENT_DATE, INTERVAL 60 DAY) AND DATE_SUB(CURRENT_DATE, INTERVAL 31 DAY)");
 
     }
