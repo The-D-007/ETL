@@ -1,8 +1,8 @@
 
-import dataProvider.TablesToInsert;
+import dataProvider.TakingFiles;
 
 public class Orchestrator {
     public static void main(String[] args) {
-        new TablesToInsert();
+        new TakingFiles();
     }
 }

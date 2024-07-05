@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import dataProvider.Connect;
 
 public class Tables {
+
+    public Tables(){}
+
     public Tables(String[] tableNames) {
         try (Connection connection = new Connect().getConnection()) {
             boolean allTablesExist = true;

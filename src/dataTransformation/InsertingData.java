@@ -14,7 +14,9 @@ import load.Tables;
 
 public class InsertingData {
     static int count = 0;
-    static List<String> tableNames = new ArrayList<>(); // Use a static list
+    static List<String> tableNames = new ArrayList<>();
+
+    public InsertingData(){}
 
     public InsertingData(File selectedFile, String tableName) {
         addTableName(tableName);
@@ -39,15 +41,14 @@ public class InsertingData {
         if (count > 1) {
             System.out.println(count);
             System.out.println(tableNames);
-            new Tables(tableNames.toArray(new String[0])); // Convert list to array
-            // new TakingTables();
+            new Tables(tableNames.toArray(new String[0])); 
         }
     }
 
     private void addTableName(String tableName) {
-        tableNames.add(tableName); // Add table name to the list
-        System.out.println("Added table name: " + tableName); // Debug statement
-        System.out.println("Current table names: " + tableNames); // Debug statement
+        tableNames.add(tableName); 
+        System.out.println("Added table name: " + tableName); 
+        System.out.println("Current table names: " + tableNames); 
     }
 
     private void insertData(Connect connect, String tableName, String[] columns, String line) throws SQLException {

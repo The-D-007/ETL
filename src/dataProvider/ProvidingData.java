@@ -10,6 +10,8 @@ import dataTransformation.InsertingData;
 
 public class ProvidingData {
 
+    public ProvidingData(){}
+
     public ProvidingData(File selectedFile, String tableName) {
 
         try {

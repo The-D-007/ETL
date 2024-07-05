@@ -7,6 +7,9 @@ import java.sql.Statement;
 import dataProvider.Connect;
 
 public class ExportToCSV {
+
+    public ExportToCSV(){}
+
     public ExportToCSV(String CSVFile) {
         
         try {
