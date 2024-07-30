@@ -17,24 +17,25 @@ public class Conditions {
     private static final double MONTHLY_FEE = 19.65;
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    public Conditions(){}
+    public Conditions() {
+    }
 
     public Conditions(String table1, String table2, String[] columns1, String[] columns2, String[] additionalColumns) {
-
 
         String[] columns = new String[columns1.length + columns2.length + additionalColumns.length];
         System.arraycopy(columns1, 0, columns, 0, columns1.length);
         System.arraycopy(columns2, 0, columns, columns1.length, columns2.length);
         System.arraycopy(additionalColumns, 0, columns, columns1.length + columns2.length, additionalColumns.length);
 
-       // Verify that the user's suscription is active
-executeQuery(table1, table2, columns1, columns2, columns, "active_subs", "`" + table1 + "`.`Subscription Date` > CURRENT_DATE");
+        
+        executeQuery(table1, table2, columns1, columns2, columns, "active_subs",
+                "`" + table1 + "`.`Subscription Date` > CURRENT_DATE");
 
-// Verify that the user's subscription hasn't expired in the last 30 days
-executeQuery(table1, table2, columns1, columns2, columns, "has_30_days", "`" + table1 + "`.`Subscription Date` BETWEEN DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY) AND DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)");
+        executeQuery(table1, table2, columns1, columns2, columns, "has_30_days", "`" + table1
+                + "`.`Subscription Date` BETWEEN DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY) AND DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY)");
 
-// Verify that the user's subscription hasn't expired in the last 60 days or over
-executeQuery(table1, table2, columns1, columns2, columns, "has_60_days", "`" + table1 + "`.`Subscription Date` BETWEEN DATE_SUB(CURRENT_DATE, INTERVAL 60 DAY) AND DATE_SUB(CURRENT_DATE, INTERVAL 31 DAY)");
+        executeQuery(table1, table2, columns1, columns2, columns, "has_60_days", "`" + table1
+                + "`.`Subscription Date` BETWEEN DATE_SUB(CURRENT_DATE, INTERVAL 60 DAY) AND DATE_SUB(CURRENT_DATE, INTERVAL 31 DAY)");
 
     }
 
@@ -61,7 +62,7 @@ executeQuery(table1, table2, columns1, columns2, columns, "has_60_days", "`" + t
                     + "` JOIN `"
                     + table2 + "` ON `" + table1 + "`.`Customer Id` = `" + table2 + "`.`Customer Id`" + " WHERE "
                     + condition;
-                    System.out.println(query);
+            System.out.println(query);
             resultSet = statement.executeQuery(query);
             new ProvidingData(outputTable, columns);
 
